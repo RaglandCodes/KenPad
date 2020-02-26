@@ -1,0 +1,18 @@
+body {
+}
+
+#paper {
+  width: 90%;
+  height: 90%;
+  background-color: whitesmoke;
+  padding: 4;
+}
+
+#settings {
+  display: flex;
+}
+
+.settings--setting {
+  padding: 4px;
+  font-size: 34px;
+}

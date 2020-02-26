@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/@reactivex/rxjs@5.0.0-beta.1/dist/global/Rx.umd.js"></script>
+    <title>Text Editor</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="settings">
+      <button id="settings--bold" class="settings--setting" onclick="handleBoldClick()">
+        B
+      </button>
+      <button id="settings--italics" class="settings--setting">i</button>
+    </div>
+    <div id="paper" contenteditable="true"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
