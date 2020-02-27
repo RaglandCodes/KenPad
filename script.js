@@ -91,7 +91,7 @@ function sortStyles() {
   });
 }
 
-function handleBoldClick() {
+function handleStyleClick(style) {
   // TODO, check if something is actually selected
   // TODO if nothing is selected, toggle bold
 
@@ -105,9 +105,16 @@ function handleBoldClick() {
   selectionEnd = preCaretRange.toString().length;
   selectionStart = selectionEnd - selectionLength;
 
-  styles.push([selectionStart, '<b>'], [selectionEnd, '</b>']);
+  if (style === 'bold') {
+    styles.push([selectionStart, '<b>'], [selectionEnd, '</b>']);
+  } else if (style === 'italics') {
+    styles.push([selectionStart, '<i>'], [selectionEnd, '</i>']);
+  } else if (style === 'underline') {
+    styles.push([selectionStart, '<u>'], [selectionEnd, '</u>']);
+  }
 
   //TODO insert properly and don't sort each time.
+
   sortStyles();
 
   resetPaper(generateStyledHTML());

@@ -2,15 +2,41 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://unpkg.com/@reactivex/rxjs@5.0.0-beta.1/dist/global/Rx.umd.js"></script>
+    <script
+      src="https://kit.fontawesome.com/f611d0c42e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lacquer|PT+Serif|Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
     <title>Text Editor</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="settings">
-      <button id="settings--bold" class="settings--setting" onclick="handleBoldClick()">
-        B
+      <button
+        id="settings--bold"
+        class="settings--settingbtn"
+        onclick='handleStyleClick("bold")'
+      >
+        <i class="fas fa-bold"></i>
       </button>
-      <button id="settings--italics" class="settings--setting">i</button>
+      <button
+        id="settings--italics"
+        class="settings--settingbtn"
+        onclick='handleStyleClick("italics")'
+      >
+        <i class="fas fa-italic"></i>
+      </button>
+
+      <button
+        id="settings--underline"
+        class="settings--settingbtn"
+        onclick='handleStyleClick("underline")'
+      >
+        <i class="fas fa-underline"></i>
+      </button>
     </div>
     <div id="paper" contenteditable="true"></div>
 
