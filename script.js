@@ -13,6 +13,9 @@ paper.addEventListener('keydown', e => {
   return;
 });
 
+function resetPaper(innerHTMLString) {
+  paper.innerHTML = innerHTMLString;
+}
 function handleKeyClick(key, caretPosition) {
   // Change text base on new key
   switch (key) {
@@ -57,45 +60,57 @@ function writeToPaper(caretPosition) {
 }
 
 function generateStyledHTML() {
-  let sortedStyles = getSortedStyles();
-
-  console.log(`${sortedStyles.length} <== sortedStyles.length`);
   let styledHTML = '';
+  let stylesLength = styles.length;
+  let stylesCounter = -1;
+  if (stylesLength) {
+    stylesCounter = 0;
+  }
   for (let i = 0; i < plainText.length; i++) {
-    console.log(`${JSON.stringify(sortedStyles[0], null, 2)} <== sortedStyles`);
-    while (sortedStyles[0][0] === i) {
-      console.log('AA' + i);
-
-      styledHTML += sortedStyles.shift()[1];
-
-      console.log(`${styles.length} <== styles.length`);
+    if (stylesCounter >= 0) {
+      while (styles[stylesCounter][0] === i) {
+        styledHTML += styles[stylesCounter][1];
+        stylesCounter += 1;
+        if (stylesLength === stylesCounter) {
+          stylesCounter = -1;
+          break;
+        }
+      }
     }
+
     styledHTML += plainText[i];
   }
-
   return styledHTML;
 }
 
 // --- Style functions ---
 
-function getSortedStyles() {
-  return styles.sort((a, b) => {
+function sortStyles() {
+  styles.sort((a, b) => {
     return a[0] - b[0];
   });
 }
 
 function handleBoldClick() {
+  // TODO, check if something is actually selected
+  // TODO if nothing is selected, toggle bold
+
   let selection = window.getSelection().getRangeAt(0);
+  let selectionLength = selection.endOffset - selection.startOffset;
 
-  //   console.log(`${selection.startOffset} <= selection.startOffset`);
-  //   console.log(`${selection.endOffset} <= selection.endOffset`);
-  styles.push([selection.startOffset, '<b>'], [selection.endOffset, '</b>']);
-  console.log(`${styles.length} <== styles.length`);
-  console.log(`${JSON.stringify(styles, null, 2)} <== styles`);
+  let preCaretRange = selection.cloneRange();
+  preCaretRange.selectNodeContents(paper);
+  preCaretRange.setEnd(selection.endContainer, selection.endOffset);
 
-  console.log(
-    `${JSON.stringify(generateStyledHTML(), null, 2)} <== generateStyledHTML()`
-  );
+  selectionEnd = preCaretRange.toString().length;
+  selectionStart = selectionEnd - selectionLength;
+
+  styles.push([selectionStart, '<b>'], [selectionEnd, '</b>']);
+
+  //TODO insert properly and don't sort each time.
+  sortStyles();
+
+  resetPaper(generateStyledHTML());
 
   return;
 }
