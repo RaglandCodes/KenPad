@@ -85,6 +85,10 @@ function generateStyledHTML() {
 
 // --- Style functions ---
 
+function toggleTheme() {
+  const body = document.querySelector('#body');
+  body.classList.toggle('dark-theme');
+}
 function sortStyles() {
   styles.sort((a, b) => {
     return a[0] - b[0];

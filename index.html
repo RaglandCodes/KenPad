@@ -7,13 +7,13 @@
       crossorigin="anonymous"
     ></script>
     <link
-      href="https://fonts.googleapis.com/css?family=Lacquer|PT+Serif|Roboto+Mono&display=swap"
+      href="https://fonts.googleapis.com/css?family=Lacquer|Merriweather|PT+Serif|Roboto+Mono&display=swap"
       rel="stylesheet"
     />
     <title>Text Editor</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body id="body" class="dark-theme">
     <div id="settings">
       <button
         id="settings--bold"
@@ -36,6 +36,14 @@
         onclick='handleStyleClick("underline")'
       >
         <i class="fas fa-underline"></i>
+      </button>
+      <button id="settings--strikethrough" class="settings--settingbtn">
+        <i class="fas fa-strikethrough"></i>
+      </button>
+
+      <div class="flex-grow-one"></div>
+      <button id="settings--adjust" class="settings--settingbtn" onClick="toggleTheme()">
+        <i class="fas fa-adjust"></i>
       </button>
     </div>
     <div id="paper" contenteditable="true"></div>

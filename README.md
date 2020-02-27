@@ -6,3 +6,4 @@ This text editor once is done will be used in [this](https://github.com/RaglandC
 
 - Fix typing not working after applying styles
 - Fix styling not working when overlapping
+- Handle function keys
