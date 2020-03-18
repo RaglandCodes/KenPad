@@ -2,6 +2,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://unpkg.com/@reactivex/rxjs@5.0.0-beta.1/dist/global/Rx.umd.js"></script>
+    <script src="pixi.min.js"></script>
     <script
       src="https://kit.fontawesome.com/f611d0c42e.js"
       crossorigin="anonymous"
@@ -13,7 +14,7 @@
     <title>Text Editor</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body id="body" class="dark-theme">
+  <body id="body">
     <div id="settings">
       <button
         id="settings--bold"
@@ -46,8 +47,8 @@
         <i class="fas fa-adjust"></i>
       </button>
     </div>
+    <!-- <span id="sizer">i</span> -->
     <div id="paper" contenteditable="true"></div>
-
     <script src="./script.js"></script>
   </body>
 </html>

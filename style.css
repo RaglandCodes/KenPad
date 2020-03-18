@@ -17,8 +17,15 @@
   height: 100%;
   margin: 0;
   padding: 15px;
+  background-color: #e0e0e0;
   font-size: 25px;
   box-sizing: border-box;
+}
+
+#sizer {
+  font-size: 25px;
+  background-color: brown;
+  color: white;
 }
 
 .dark-theme #paper {

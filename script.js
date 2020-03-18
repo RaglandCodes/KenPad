@@ -1,103 +1,44 @@
 // --- constants / globals---
 const paper = document.querySelector('#paper');
+const alphabets = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const paperPadding = 15;
 
-let plainText = '';
+let selectionStart = 0;
+let selectionEnd = 0;
+console.log(`${alphabets.length} <== alphabets.length`);
+let mouseClicked = false;
+
 let styles = [];
+// --- sizer ---
+// const sizer = document.querySelector('#sizer');
+// let sizes = {};
 
-// --- DOM functions ---
+// alphabets.split('').forEach(alphabet => {
+//   sizer.innerText = alphabet;
+//   sizes[alphabet] = sizer.offsetWidth;
+// });
 
-paper.addEventListener('keydown', e => {
-  e.preventDefault();
-  handleKeyClick(e.key, window.getSelection().getRangeAt(0).startOffset);
+// let size = sizer.offsetWidth;
+// //console.log(`${size} <== size`);
+// paper.addEventListener('keydown', e => {
+//   return;
+// });
 
-  return;
+// --- DOM ---
+paper.addEventListener('mousedown', e => {
+  mouseClicked = true;
+  //console.dir(e);
+  console.log(`${e.clientX} <== e.clientX`);
+  console.log(`${e.clientY} <== e.clientY`);
 });
 
-function resetPaper(innerHTMLString) {
-  paper.innerHTML = innerHTMLString;
-}
-function handleKeyClick(key, caretPosition) {
-  // Change text base on new key
-  switch (key) {
-    case 'ArrowLeft':
-    case 'ArrowRight':
-    case 'Control':
-    case 'Alt':
-    case 'Backspace':
-    case 'Shift':
-    case 'Delete':
-    case 'CapsLock':
-    case 'Enter':
-    case 'Tab':
-    case 'Home':
-    case 'End':
-      console.log('Not writing');
+// paper.addEventListener('mousemove', () => {
+//   if (mouseClicked) {
+//   }
+// });
 
-      break;
-    default:
-      plainText =
-        plainText.slice(0, caretPosition) + key + plainText.slice(caretPosition);
-      writeToPaper(caretPosition);
-  }
-
-  return;
-}
-
-function writeToPaper(caretPosition) {
-  paper.innerText = plainText;
-  //Set new caret postion
-  let selection = window.getSelection();
-
-  let newCaret = document.createRange();
-  newCaret.selectNode(paper);
-  newCaret.setStart(paper.childNodes[0], caretPosition + 1);
-  newCaret.setEnd(paper.childNodes[0], caretPosition + 1);
-
-  selection.removeAllRanges();
-  selection.addRange(newCaret);
-
-  return;
-}
-
-function generateStyledHTML() {
-  let styledHTML = '';
-  let stylesLength = styles.length;
-  let stylesCounter = -1;
-  if (stylesLength) {
-    stylesCounter = 0;
-  }
-  for (let i = 0; i < plainText.length; i++) {
-    if (stylesCounter >= 0) {
-      while (styles[stylesCounter][0] === i) {
-        styledHTML += styles[stylesCounter][1];
-        stylesCounter += 1;
-        if (stylesLength === stylesCounter) {
-          stylesCounter = -1;
-          break;
-        }
-      }
-    }
-
-    styledHTML += plainText[i];
-  }
-  return styledHTML;
-}
-
-// --- Style functions ---
-
-function toggleTheme() {
-  const body = document.querySelector('#body');
-  body.classList.toggle('dark-theme');
-}
-function sortStyles() {
-  styles.sort((a, b) => {
-    return a[0] - b[0];
-  });
-}
-
-function handleStyleClick(style) {
-  // TODO, check if something is actually selected
-  // TODO if nothing is selected, toggle bold
+paper.addEventListener('mouseup', e => {
+  mouseClicked = false;
 
   let selection = window.getSelection().getRangeAt(0);
   let selectionLength = selection.endOffset - selection.startOffset;
@@ -109,6 +50,21 @@ function handleStyleClick(style) {
   selectionEnd = preCaretRange.toString().length;
   selectionStart = selectionEnd - selectionLength;
 
+  //   console.log(`${selectionLength} <== selectionLength`);
+  //   console.log(`${selectionStart} <== selectionStart`);
+  //   console.log(`${selectionEnd} <== selectionEnd`);
+
+  //   console.log(`${paper.innerHTML} <== paper.innerHTML`);
+});
+
+function handleStyleClick(style) {
+  console.log(`${style} <== style`);
+
+  if (selectionStart === selectionEnd) {
+    console.log('Not doing anything');
+    return;
+  }
+
   if (style === 'bold') {
     styles.push([selectionStart, '<b>'], [selectionEnd, '</b>']);
   } else if (style === 'italics') {
@@ -117,11 +73,26 @@ function handleStyleClick(style) {
     styles.push([selectionStart, '<u>'], [selectionEnd, '</u>']);
   }
 
-  //TODO insert properly and don't sort each time.
+  // reset the selection values
+  selectionStart = 0;
+  selectionEnd = 0;
+  console.log(`${JSON.stringify(styles, null, 2)} <== styles`);
 
-  sortStyles();
+  let styledText = '';
+  let oldText = paper.innerText;
+  for (let i = 0; i < oldText.length; i++) {
+    for (let j = 0; j < styles.length; j++) {
+      if (styles[j][0] === i) {
+        styledText += styles[j][1];
+      }
+    }
+    styledText += oldText[i];
+  }
 
-  resetPaper(generateStyledHTML());
+  paper.innerHTML = styledText;
+}
 
-  return;
+function toggleTheme() {
+  const body = document.querySelector('#body');
+  body.classList.toggle('dark-theme');
 }
