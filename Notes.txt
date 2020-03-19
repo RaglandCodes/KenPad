@@ -1,0 +1,32 @@
+Keydown
+
+Push styles +1 after caret
+
+put in new styled HTML
+
+====================================================
+
+Add new style
+
+Change (Remove, add or extend) old style if possible
+
+Else add new style
+
+Sort styles
+
+=============================================
+
+TODO
+
+use switch case in addNewStyle function
+
+don't loop through entire style array every time generateStyledHTML function
+
+=============================================
+
+Test pasts
+
+uderlinne bold bold_underline normal OK normal u i bi bu i boldunline italbld
+
+
+----------------------------------------------

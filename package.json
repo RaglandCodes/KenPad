@@ -1,6 +1,6 @@
 {
   "name": "kenpad",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "This is still in development.",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/RaglandCodes/KenPad/issues"
   },
-  "homepage": "https://github.com/RaglandCodes/KenPad#readme"
+  "homepage": "https://github.com/RaglandCodes/KenPad#readme",
+  "dependencies": {}
 }
