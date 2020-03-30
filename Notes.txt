@@ -1,18 +1,7 @@
-Keydown
-
-Push styles +1 after caret
-
-put in new styled HTML
 
 ====================================================
 
-Add new style
 
-Change (Remove, add or extend) old style if possible
-
-Else add new style
-
-Sort styles
 
 =============================================
 
@@ -28,5 +17,27 @@ Test pasts
 
 uderlinne bold bold_underline normal OK normal u i bi bu i boldunline italbld
 
-
+ib xx ui ibu xx ui bu iub xx bui ub bi
 ----------------------------------------------
+
+
+
+
+User types
+- Directly manipulate DOM
+
+[1] Clicks on a styles
+- Parse styles and plain text from the DOM
+- Apply New Style [2]
+
+
+[2]Add new style
+- Change (Remove, add or extend) old style if possible
+- Else add new style
+- Sort styles
+- Add new innerHTML [3]
+
+
+[3] Add new innerHTML
+- Get styles and plain text from [1]
+- Set innerHTML

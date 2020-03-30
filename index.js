@@ -1,14 +1,12 @@
 // --- dependencies ---
 
-//const jsdom = require('jsdom');
 // --- constants / globals---
 const paper = document.querySelector('#paper');
 
 let selectionStart = 0;
 let selectionEnd = 0;
-let mouseClicked = false;
 
-plainText = '';
+let plainText = '';
 let styles = [];
 
 // --- DOM ---
@@ -31,8 +29,6 @@ function generateStyledHTML() {
 
 function addNewStyle(style, startIndex, endIndex) {
   if (style === 'bold') {
-    console.log('BB');
-
     styles.push([selectionStart, '<b>'], [selectionEnd, '</b>']);
   } else if (style === 'italics') {
     styles.push([selectionStart, '<i>'], [selectionEnd, '</i>']);
@@ -44,20 +40,16 @@ function addNewStyle(style, startIndex, endIndex) {
 paper.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
     e.preventDefault();
-    console.log('EE');
   }
-  console.log(`${e.key} <== e.key`);
-  console.log(`${e.key === ' '} <== e.key === " "`);
-  console.log(`${e.key === 'Enter'} <== e.key === "Enter"`);
-  console.log(`${paper.innerHTML} <== paper.innerHTML`);
+  // console.log(`${e.key} <== e.key`);
+  // console.log(`${paper.innerHTML} <== paper.innerHTML`);
 });
 
 function setStyleAndTextFromHTML() {
   html = paper.innerHTML;
   html = html.trim();
   console.log(`${html} <== html`);
-  let p = '';
-  //let s = [];
+  //let p = '';
   styles = [];
   let extraCounter = 0;
 
@@ -94,15 +86,14 @@ function setStyleAndTextFromHTML() {
       continue;
     }
   }
-
-  // styles = s;
 }
 
 function handleStyleClick(style) {
   console.log(`${style} <== style`);
 
   let selection = window.getSelection().getRangeAt(0);
-  let selectionLength = selection.endOffset - selection.startOffset;
+  //let selectionLength = selection.endOffset - selection.startOffset;
+  let selectionLength = window.getSelection().toString().length;
 
   let preCaretRange = selection.cloneRange();
   preCaretRange.selectNodeContents(paper);
