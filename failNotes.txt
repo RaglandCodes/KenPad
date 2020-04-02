@@ -1,10 +1,3 @@
-
-====================================================
-
-
-
-=============================================
-
 TODO
 
 use switch case in addNewStyle function
@@ -13,11 +6,11 @@ don't loop through entire style array every time generateStyledHTML function
 
 =============================================
 
-Test pasts
+Test pastes
 
 uderlinne bold bold_underline normal OK normal u i bi bu i boldunline italbld
 
-ib xx ui ibu xx ui bu iub xx bui ub bi
+
 ----------------------------------------------
 
 
@@ -31,8 +24,8 @@ User types
 - Apply New Style [2]
 
 
-[2]Add new style
-- Change (Remove, add or extend) old style if possible
+[2] Add new style
+- Change (Remove, add or extend) old style if possible [4]
 - Else add new style
 - Sort styles
 - Add new innerHTML [3]
@@ -41,3 +34,9 @@ User types
 [3] Add new innerHTML
 - Get styles and plain text from [1]
 - Set innerHTML
+
+[4] Decide what to do
+- Extend (start/end of selection is inside and end/start is outside) or
+- Join two regions (where it starts in one styles region and ends in other)
+- Toggle (entire selection inside another selection)  or
+- Just add new style
