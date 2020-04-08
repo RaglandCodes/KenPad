@@ -1,0 +1,13 @@
+Test pastes
+
+# H1
+
+## H2 ok
+
+OK
+
+- li
+- li OK
+
+
+Handle case where in middle is not working

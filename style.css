@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   font-size: 16px;
-  font-family: 'PT Serif';
+  font-family: 'Fira Mono', monospace;
 }
 
 .dark-theme {
@@ -19,6 +19,7 @@
   padding: 15px;
   font-size: 25px;
   box-sizing: border-box;
+  /* display: inline-block; */
 }
 
 #sizer {
@@ -39,6 +40,7 @@
 }
 #settings {
   display: flex;
+  display: none;
   padding: 15px;
 }
 
